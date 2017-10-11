@@ -259,7 +259,7 @@ enum PushMessage: Equatable {
         }
     }
 
-    public static func ==(lhs: PushMessage, rhs: PushMessage) -> Bool {
+    public static func == (lhs: PushMessage, rhs: PushMessage) -> Bool {
         guard lhs.messageType == rhs.messageType else {
             return false
         }
