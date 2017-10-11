@@ -76,24 +76,24 @@ class BookmarksPanel: SiteTableViewController, HomePanel {
         tableView.addGestureRecognizer(longPressRecognizer)
 
         self.tableView.accessibilityIdentifier = "Bookmarks List"
-        
+
         self.refreshControl = UIRefreshControl()
         self.tableView.addSubview(refreshControl!)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         refreshControl?.addTarget(self, action: #selector(BookmarksPanel.refreshBookmarks), for: .valueChanged)
 
         loadData()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         refreshControl?.removeTarget(self, action: #selector(BookmarksPanel.refreshBookmarks), for: .valueChanged)
     }
-    
+
     func loadData() {
         // If we've not already set a source for this panel, fetch a new model from
         // the root; otherwise, just use the existing source to select a folder.
@@ -106,7 +106,7 @@ class BookmarksPanel: SiteTableViewController, HomePanel {
             }
             return
         }
-        
+
         if let bookmarkFolder = bookmarkFolder {
             source.selectFolder(bookmarkFolder).upon(onModelFetched)
         } else {
@@ -125,7 +125,7 @@ class BookmarksPanel: SiteTableViewController, HomePanel {
             break
         }
     }
-    
+
     @objc fileprivate func refreshBookmarks() {
         profile.syncManager.mirrorBookmarks().upon { (_) in
             DispatchQueue.main.async {
@@ -165,7 +165,7 @@ class BookmarksPanel: SiteTableViewController, HomePanel {
             make.top.equalTo(logoImageView.snp.bottom).offset(BookmarksPanelUX.WelcomeScreenPadding)
             make.width.equalTo(BookmarksPanelUX.WelcomeScreenItemWidth)
         }
-        
+
         return overlayView
     }
 
@@ -219,7 +219,7 @@ class BookmarksPanel: SiteTableViewController, HomePanel {
         guard let indexPath = tableView.indexPathForRow(at: touchPoint) else { return }
         presentContextMenu(for: indexPath)
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return source?.current.count ?? 0
     }
@@ -469,7 +469,7 @@ extension BookmarksPanel: HomePanelContextMenu {
         })
 
         actions.append(pinTopSite)
-        
+
         // Only local bookmarks can be removed
         guard let source = source else { return nil }
         if source.current.itemIsEditableAtIndex(indexPath.row) {

@@ -28,7 +28,7 @@ struct AboutLicenseHandler {
             return GCDWebServerResponse(statusCode: 200)
         }
     }
-    
+
 }
 
 extension GCDWebServerDataResponse {

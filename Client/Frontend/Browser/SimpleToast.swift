@@ -19,12 +19,12 @@ struct SimpleToast {
 
      func showAlertWithText(_ text: String) {
         guard let window = UIApplication.shared.windows.first else { return }
-        
+
         var keyboardHeight = KeyboardHelper.defaultHelper.currentState?.intersectionHeightForView(window) ?? SimpleToastUX.BottomToolbarHeight
         if keyboardHeight == 0 {
             keyboardHeight = SimpleToastUX.BottomToolbarHeight
         }
-        
+
         let toast = self.createView()
         toast.text = text
         window.addSubview(toast)

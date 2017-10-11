@@ -22,7 +22,7 @@ class AppSettingsTableViewController: SettingsTableViewController {
         navigationItem.leftBarButtonItem?.accessibilityIdentifier = "AppSettingsTableViewController.navigationItem.leftBarButtonItem"
 
         tableView.accessibilityIdentifier = "AppSettingsTableViewController.tableView"
-        
+
         // Refresh the user's FxA profile upon viewing settings. This will update their avatar,
         // display name, etc.
         if AppConstants.MOZ_SHOW_FXA_AVATAR {
@@ -52,8 +52,8 @@ class AppSettingsTableViewController: SettingsTableViewController {
                         titleText: NSLocalizedString("Block Pop-up Windows", comment: "Block pop-up windows setting")),
             BoolSetting(prefs: prefs, prefKey: "saveLogins", defaultValue: true,
                         titleText: NSLocalizedString("Save Logins", comment: "Setting to enable the built-in password manager")),
-            ]        
-        
+            ]
+
         let accountChinaSyncSetting: [Setting]
         if !profile.isChinaEdition {
             accountChinaSyncSetting = []
@@ -72,7 +72,7 @@ class AppSettingsTableViewController: SettingsTableViewController {
                         titleText: Strings.SettingsOfferClipboardBarTitle,
                         statusText: Strings.SettingsOfferClipboardBarStatus)
         ]
-        
+
         var accountSectionTitle: NSAttributedString?
         if AppConstants.MOZ_SHOW_FXA_AVATAR {
             accountSectionTitle = NSAttributedString(string: Strings.FxAFirefoxAccount)
@@ -130,7 +130,7 @@ class AppSettingsTableViewController: SettingsTableViewController {
                 EnableBookmarkMergingSetting(settings: self),
                 ForceCrashSetting(settings: self)
             ])]
-    
+
             if profile.hasAccount() {
                 settings += [SettingSection(title: nil, footerTitle: NSAttributedString(string: ""), children: [DisconnectSetting(settings: self)])]
             }

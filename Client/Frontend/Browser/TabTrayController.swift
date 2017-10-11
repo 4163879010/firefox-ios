@@ -99,7 +99,7 @@ class TabCell: UICollectionViewCell {
         self.closeButton.imageEdgeInsets = UIEdgeInsets(equalInset: TabTrayControllerUX.CloseButtonEdgeInset)
 
         super.init(frame: frame)
-        
+
         self.animator = SwipeAnimator(animatingView: self)
         self.closeButton.addTarget(self, action: #selector(TabCell.close), for: UIControlEvents.touchUpInside)
 
@@ -494,7 +494,7 @@ class TabTrayController: UIViewController {
             didTogglePrivateMode()
         }
     }
-    
+
     fileprivate func openNewTab(_ request: URLRequest? = nil) {
         toolbar.isUserInteractionEnabled = false
 
@@ -606,7 +606,7 @@ extension TabTrayController: TabManagerDelegate {
 
     func tabManagerDidRestoreTabs(_ tabManager: TabManager) {
     }
-    
+
     func tabManagerDidRemoveAllTabs(_ tabManager: TabManager, toast: ButtonToast?) {
         guard privateMode else {
             return
@@ -770,7 +770,7 @@ fileprivate class TabManagerDataSource: NSObject, UICollectionViewDataSource {
     @objc func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tabs.count
     }
-    
+
     @objc fileprivate func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let fromIndex = sourceIndexPath.item
         let toIndex = destinationIndexPath.item
@@ -1028,7 +1028,7 @@ class TrayToolbar: UIView {
         var buttonToCenter: UIButton?
         addSubview(deleteButton)
         buttonToCenter = deleteButton
-        
+
         maskButton.accessibilityIdentifier = "TabTrayController.maskButton"
 
         buttonToCenter?.snp.makeConstraints { make in

@@ -21,25 +21,25 @@ class ClipboardBarDisplayHandler {
     private var prefs: Prefs
     private var lastDisplayedURL: String?
     var clipboardToast: ButtonToast?
-    
+
     init(prefs: Prefs, tabManager: TabManager) {
         self.prefs = prefs
         self.tabManager = tabManager
         NotificationCenter.default.addObserver(self, selector: #selector(self.SELAppWillEnterForegroundNotification), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(self.SELAppWillResignActive), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
-    
+
     @objc private func SELAppWillEnterForegroundNotification() {
         sessionStarted = true
         checkIfShouldDisplayBar()
     }
-    
+
     @objc private func SELAppWillResignActive() {
         sessionStarted = true
         UIPasteboard.general.asyncString().uponQueue(.main) { res in
@@ -48,7 +48,7 @@ class ClipboardBarDisplayHandler {
             }
         }
     }
-    
+
     private func shouldDisplayBar(_ copiedURL: String) -> Bool {
         if !sessionStarted ||
             isClipboardURLAlreadyDisplayed(copiedURL) ||
@@ -58,7 +58,7 @@ class ClipboardBarDisplayHandler {
         sessionStarted = false
         return true
     }
-    
+
     // If we already displayed this URL on the previous session, or in an already open
     // tab, we shouldn't display it again
     private func isClipboardURLAlreadyDisplayed(_ clipboardURL: String) -> Bool {
@@ -72,7 +72,7 @@ class ClipboardBarDisplayHandler {
         }
         return false
     }
-    
+
     func checkIfShouldDisplayBar() {
         guard self.prefs.boolForKey("showClipboardBar") ?? false else {
             // There's no point in doing any of this work unless the

@@ -148,16 +148,16 @@ class ToolbarButton: UIButton {
         theme.highlightButtonColor = UIColor(rgb: 0xAC39FF)
         theme.disabledButtonColor = UIColor.gray
         themes[Theme.PrivateMode] = theme
-        
+
         theme = Theme()
         theme.buttonTintColor = UIColor(rgb: 0x272727)
         theme.highlightButtonColor = UIColor(rgb: 0x00A2FE)
         theme.disabledButtonColor = UIColor.lightGray
         themes[Theme.NormalMode] = theme
-        
+
         return themes
     }()
-    
+
     var selectedTintColor: UIColor!
     var unselectedTintColor: UIColor!
     var disabledTintColor: UIColor!
@@ -179,7 +179,7 @@ class ToolbarButton: UIButton {
             self.tintColor = isHighlighted ? selectedTintColor : unselectedTintColor
         }
     }
-    
+
     override open var isEnabled: Bool {
         didSet {
             self.tintColor = isEnabled ? unselectedTintColor : disabledTintColor
@@ -191,7 +191,7 @@ class ToolbarButton: UIButton {
             self.imageView?.tintColor = self.tintColor
         }
     }
-    
+
 }
 
 extension ToolbarButton: Themeable {
@@ -276,7 +276,7 @@ class TabToolbar: Toolbar, TabToolbarProtocol {
     func updatePageStatus(_ isWebPage: Bool) {
         stopReloadButton.isEnabled = isWebPage
     }
-    
+
     func updateTabCount(_ count: Int, animated: Bool) {
         tabsButton.updateTabCount(count, animated: animated)
     }

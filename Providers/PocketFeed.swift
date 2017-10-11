@@ -135,7 +135,7 @@ class Pocket {
         guard let feedURL = URL(string: pocketGlobalFeed)?.withQueryParams(params) else {
             return nil
         }
-        
+
         return URLRequest(url: feedURL, cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 5)
     }
 }

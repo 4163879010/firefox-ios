@@ -137,7 +137,7 @@ class URLBarView: UIView {
         locationContainer.backgroundColor = .clear
         return locationContainer
     }()
-    
+
     let line = UIView()
 
     lazy var tabsButton: TabsButton = {
@@ -159,7 +159,7 @@ class URLBarView: UIView {
         cancelButton.alpha = 0
         return cancelButton
     }()
-    
+
     var showQRScannerButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage.templateImageNamed("menu-ScanQRCode"), for: .normal)
@@ -212,10 +212,10 @@ class URLBarView: UIView {
 
     fileprivate func commonInit() {
         locationContainer.addSubview(locationView)
-    
+
         [scrollToTopButton, line, tabsButton, progressBar, cancelButton, showQRScannerButton].forEach { addSubview($0) }
         [menuButton, forwardButton, backButton, stopReloadButton, locationContainer].forEach { addSubview($0) }
-        
+
         helper = TabToolbarHelper(toolbar: self)
         setupConstraints()
 
@@ -224,12 +224,12 @@ class URLBarView: UIView {
     }
 
     fileprivate func setupConstraints() {
-        
+
         line.snp.makeConstraints { make in
             make.bottom.leading.trailing.equalTo(self)
             make.height.equalTo(1)
         }
-        
+
         scrollToTopButton.snp.makeConstraints { make in
             make.top.equalTo(self)
             make.left.right.equalTo(self.locationContainer)
@@ -274,13 +274,13 @@ class URLBarView: UIView {
             make.centerY.equalTo(self)
             make.size.equalTo(URLBarViewUX.ButtonHeight)
         }
-        
+
         tabsButton.snp.makeConstraints { make in
             make.trailing.equalTo(self.menuButton.snp.leading)
             make.centerY.equalTo(self)
             make.size.equalTo(URLBarViewUX.ButtonHeight)
         }
-        
+
         showQRScannerButton.snp.makeConstraints { make in
             make.centerY.equalTo(self.locationContainer)
             make.trailing.equalTo(self).offset(-URLBarViewUX.Padding)
@@ -333,7 +333,7 @@ class URLBarView: UIView {
         }
 
     }
-    
+
     func showQRScanner() {
         self.delegate?.urlBarDidPressQRButton(self)
     }
@@ -344,7 +344,7 @@ class URLBarView: UIView {
         locationTextField = ToolbarTextField()
 
         guard let locationTextField = locationTextField else { return }
-        
+
         locationTextField.translatesAutoresizingMaskIntoConstraints = false
         locationTextField.autocompleteDelegate = self
         locationTextField.keyboardType = UIKeyboardType.webSearch
@@ -360,7 +360,7 @@ class URLBarView: UIView {
         locationTextField.snp.remakeConstraints { make in
             make.edges.equalTo(self.locationView)
         }
-        
+
         locationTextField.applyTheme(currentTheme)
     }
 
@@ -536,7 +536,7 @@ class URLBarView: UIView {
 }
 
 extension URLBarView: TabToolbarProtocol {
-    
+
     func updateBackStatus(_ canGoBack: Bool) {
         backButton.isEnabled = canGoBack
     }
@@ -603,7 +603,7 @@ extension URLBarView: TabLocationViewDelegate {
     func tabLocationViewDidTapReload(_ tabLocationView: TabLocationView) {
         delegate?.urlBarDidPressReload(self)
     }
-    
+
     func tabLocationViewDidTapStop(_ tabLocationView: TabLocationView) {
         delegate?.urlBarDidPressStop(self)
     }
@@ -611,7 +611,7 @@ extension URLBarView: TabLocationViewDelegate {
     func tabLocationViewDidTapReaderMode(_ tabLocationView: TabLocationView) {
         delegate?.urlBarDidPressReaderMode(self)
     }
-    
+
     func tabLocationViewDidTapPageOptions(_ tabLocationView: TabLocationView, from button: UIButton) {
         delegate?.urlBarDidPressPageOptions(self, from: tabLocationView.pageOptionsButton)
     }
@@ -653,7 +653,7 @@ extension URLBarView {
         get { return cancelButton.tintColor }
         set { return cancelButton.tintColor = newValue }
     }
-    
+
     dynamic var showQRButtonTintColor: UIColor? {
         get { return showQRScannerButton.tintColor }
         set { return showQRScannerButton.tintColor = newValue }
@@ -662,7 +662,7 @@ extension URLBarView {
 }
 
 extension URLBarView: Themeable {
-    
+
     func applyTheme(_ themeName: String) {
         locationView.applyTheme(themeName)
         locationTextField?.applyTheme(themeName)
@@ -670,9 +670,9 @@ extension URLBarView: Themeable {
         guard let theme = URLBarViewUX.Themes[themeName] else {
             fatalError("Theme not found")
         }
-        
+
         let isPrivate = themeName == Theme.PrivateMode
-        
+
         progressBar.setGradientColors(startColor: UIConstants.LoadingStartColor.color(isPBM: isPrivate), endColor: UIConstants.LoadingEndColor.color(isPBM: isPrivate))
         currentTheme = themeName
         locationBorderColor = theme.borderColor!
@@ -690,13 +690,13 @@ extension URLBarView: Themeable {
 // We need a subclass so we can setup the shadows correctly
 // This subclass creates a strong shadow on the URLBar
 class TabLocationContainerView: UIView {
-    
+
     struct LocationContainerUX {
         static let CornerRadius: CGFloat = 4
         static let ShadowRadius: CGFloat = 2
         static let ShadowOpacity: Float = 1
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         let layer = self.layer
@@ -705,14 +705,14 @@ class TabLocationContainerView: UIView {
         layer.shadowOpacity = LocationContainerUX.ShadowOpacity
         layer.masksToBounds = false
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         let layer = self.layer
-        
+
         layer.shadowOffset = CGSize(width: 0, height: 1)
         // the shadow appears 2px off from the view rect
         let shadowLength: CGFloat = 2
@@ -801,7 +801,7 @@ class ToolbarTextField: AutocompleteTextField {
         context.fill(rect)
         let tintedImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
+
         return tintedImage
     }
 }

@@ -270,22 +270,22 @@ class TabManager: NSObject {
         configureTab(tab, request: request, afterTab: afterTab, flushToDisk: flushToDisk, zombie: zombie)
         return tab
     }
-    
+
     func moveTab(isPrivate privateMode: Bool, fromIndex visibleFromIndex: Int, toIndex visibleToIndex: Int) {
         assert(Thread.isMainThread)
-        
+
         let currentTabs = privateMode ? privateTabs : normalTabs
         let fromIndex = tabs.index(of: currentTabs[visibleFromIndex]) ?? tabs.count - 1
         let toIndex = tabs.index(of: currentTabs[visibleToIndex]) ?? tabs.count - 1
-        
+
         let previouslySelectedTab = selectedTab
-        
+
         tabs.insert(tabs.remove(at: fromIndex), at: toIndex)
-        
+
         if let previouslySelectedTab = previouslySelectedTab, let previousSelectedIndex = tabs.index(of: previouslySelectedTab) {
             _selectedIndex = previousSelectedIndex
         }
-        
+
         storeChanges()
     }
 
@@ -454,11 +454,11 @@ class TabManager: NSObject {
         nonSelectedTabsForRemoval.forEach({ removeTab($0, flushToDisk: true, notify: notify) })
         removeTab(selectedTab, flushToDisk: true, notify: notify)
     }
-    
+
     func removeTabsWithUndoToast(_ tabs: [Tab]) {
         tempTabs = tabs
         var tabsCopy = tabs
-        
+
         // Remove the current tab last to prevent switching tabs while removing tabs
         if let selectedTab = selectedTab {
             if let selectedIndex = tabsCopy.index(of: selectedTab) {
@@ -488,7 +488,7 @@ class TabManager: NSObject {
 
         delegates.forEach { $0.get()?.tabManagerDidRemoveAllTabs(self, toast: toast) }
     }
-    
+
     func undoCloseTabs() {
         guard let tempTabs = self.tempTabs, tempTabs.count > 0 else {
             return
@@ -508,7 +508,7 @@ class TabManager: NSObject {
         self.tempTabs?.removeAll()
         tabs.first?.createWebview()
     }
-    
+
     func eraseUndoCache() {
         tempTabs?.removeAll()
     }
@@ -519,7 +519,7 @@ class TabManager: NSObject {
         }
         storeChanges()
     }
-    
+
     func removeAll() {
         removeTabs(self.tabs)
     }
@@ -795,7 +795,7 @@ extension TabManager {
             }
         }
     }
-    
+
     func restoreTabs(_ savedTabs: [Tab]) {
         isRestoring = true
         for tab in savedTabs {
