@@ -30,7 +30,9 @@ disabled_rules: # rule identifiers to exclude from running
   - block_based_kvo
   - nesting
   - is_disjoint
+  - multiple_closures_with_trailing_closure
   - fallthrough
+  - switch_case_alignment
 opt_in_rules: # some rules are only opt-in
   - closing_brace
   - opening_brace
