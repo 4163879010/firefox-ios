@@ -263,7 +263,7 @@ class AuthenticationSettingsViewController: SettingsTableViewController {
             requirePasscodeSectionChildren.append(
                 TouchIDSetting(
                     title: NSAttributedString.tableRowTitle(
-                        NSLocalizedString("Use Touch ID", tableName:  "AuthenticationManager", comment: "List section title for when to use Touch ID"), enabled: true
+                        NSLocalizedString("Use Touch ID", tableName: "AuthenticationManager", comment: "List section title for when to use Touch ID"), enabled: true
                     ),
                     navigationController: self.navigationController,
                     delegate: nil,

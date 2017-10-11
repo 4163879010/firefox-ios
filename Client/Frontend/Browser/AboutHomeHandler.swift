@@ -16,7 +16,7 @@ struct AboutHomeHandler {
 }
 
 struct AboutLicenseHandler {
-    static func register(_ webServer:   WebServer) {
+    static func register(_ webServer: WebServer) {
         webServer.registerHandlerForMethod("GET", module: "about", resource: "license") { (request: GCDWebServerRequest?) -> GCDWebServerResponse! in
             let path = Bundle.main.path(forResource: "Licenses", ofType: "html")
             do {
@@ -28,9 +28,6 @@ struct AboutLicenseHandler {
             return GCDWebServerResponse(statusCode: 200)
         }
     }
-
-
-
     
 }
 

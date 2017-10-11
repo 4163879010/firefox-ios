@@ -1447,7 +1447,7 @@ extension BrowserViewController: URLBarDelegate {
 
         profile.bookmarks.getURLForKeywordSearch(possibleKeyword).uponQueue(DispatchQueue.main) { result in
             if var urlString = result.successValue,
-                let escapedQuery = possibleQuery.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed),
+                let escapedQuery = possibleQuery.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed),
                 let range = urlString.range(of: "%s") {
                 urlString.replaceSubrange(range, with: escapedQuery)
 
@@ -1521,7 +1521,7 @@ extension BrowserViewController: TabToolbarDelegate, PhotonActionSheetProtocol {
 
         let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         controller.addAction(UIAlertAction(title: toggleActionTitle, style: .default, handler: { _ in tab.toggleDesktopSite() }))
-        controller.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment:"Label for Cancel button"), style: .cancel, handler: nil))
+        controller.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Label for Cancel button"), style: .cancel, handler: nil))
         controller.popoverPresentationController?.sourceView = toolbar ?? urlBar
         controller.popoverPresentationController?.sourceRect = button.frame
         present(controller, animated: true, completion: nil)
@@ -1541,7 +1541,7 @@ extension BrowserViewController: TabToolbarDelegate, PhotonActionSheetProtocol {
 
     func tabToolbarDidPressMenu(_ tabToolbar: TabToolbarProtocol, button: UIButton) {
         // ensure that any keyboards or spinners are dismissed before presenting the menu
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         var actions: [[PhotonActionSheetItem]] = []
 
         actions.append(getHomePanelActions())
@@ -2196,7 +2196,7 @@ extension BrowserViewController: UIAdaptivePresentationControllerDelegate {
 extension BrowserViewController: ReaderModeStyleViewControllerDelegate {
     func readerModeStyleViewController(_ readerModeStyleViewController: ReaderModeStyleViewController, didConfigureStyle style: ReaderModeStyle) {
         // Persist the new style to the profile
-        let encodedStyle: [String:Any] = style.encodeAsDictionary()
+        let encodedStyle: [String: Any] = style.encodeAsDictionary()
         profile.prefs.setObject(encodedStyle, forKey: ReaderModeProfileKeyStyle)
         // Change the reader mode style on all tabs that have reader mode active
         for tabIndex in 0..<tabManager.count {
@@ -2320,7 +2320,7 @@ extension BrowserViewController {
 
         var readerModeStyle = DefaultReaderModeStyle
         if let dict = profile.prefs.dictionaryForKey(ReaderModeProfileKeyStyle) {
-            if let style = ReaderModeStyle(dict: dict as [String : AnyObject]) {
+            if let style = ReaderModeStyle(dict: dict as [String: AnyObject]) {
                 readerModeStyle = style
             }
         }
@@ -2336,7 +2336,7 @@ extension BrowserViewController: ReaderModeBarViewDelegate {
             if let readerMode = tabManager.selectedTab?.getHelper(name: "ReaderMode") as? ReaderMode, readerMode.state == ReaderModeState.active {
                 var readerModeStyle = DefaultReaderModeStyle
                 if let dict = profile.prefs.dictionaryForKey(ReaderModeProfileKeyStyle) {
-                    if let style = ReaderModeStyle(dict: dict as [String : AnyObject]) {
+                    if let style = ReaderModeStyle(dict: dict as [String: AnyObject]) {
                         readerModeStyle = style
                     }
                 }

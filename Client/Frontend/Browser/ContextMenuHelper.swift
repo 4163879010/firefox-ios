@@ -70,7 +70,7 @@ extension ContextMenuHelper: TabHelper {
             return
         }
 
-        guard let data = message.body as? [String : AnyObject] else {
+        guard let data = message.body as? [String: AnyObject] else {
             return
         }
 

@@ -201,7 +201,7 @@ extension PhotonActionSheetProtocol {
         return [topActions, [copyURL, findInPageAction, toggleDesktopSite, pinToTopSites, setHomePage], [share]]
     }
     
-    private func showToast(text:String) {
+    private func showToast(text: String) {
         SimpleToast().showAlertWithText(text)
     }
 }
