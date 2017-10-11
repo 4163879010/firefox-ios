@@ -93,8 +93,7 @@ class ContentBlockerHelper {
         }
 
         let blockImages = "[{'trigger':{'url-filter':'.*','resource-type':['image']},'action':{'type':'block'}}]".replacingOccurrences(of: "'", with: "\"")
-        ruleStore.compileContentRuleList(forIdentifier: "images", encodedContentRuleList: blockImages) {
-            rule, error in
+        ruleStore.compileContentRuleList(forIdentifier: "images", encodedContentRuleList: blockImages) { rule, error in
             assert(rule != nil && error == nil)
             ContentBlockerHelper.blockImagesRule = rule
         }
