@@ -111,7 +111,6 @@ class SyncDataDisplay {
             }
         default:
             displayUnknownMessageNotification()
-            break
         }
     }
 }

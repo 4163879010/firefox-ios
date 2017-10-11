@@ -491,28 +491,20 @@ open class Login: CustomStringConvertible, LoginData, LoginUsageData, Equatable 
             switch delta {
             case let .hostname(to):
                 hostname = to
-                break
             case let .password(to):
                 password = to
-                break
             case let .username(to):
                 username = to
-                break
             case let .httpRealm(to):
                 httpRealm = to
-                break
             case let .formSubmitURL(to):
                 formSubmitURL = to
-                break
             case let .timeCreated(to):
                 timeCreated = to
-                break
             case let .timeLastUsed(to):
                 timeLastUsed = to
-                break
             case let .timePasswordChanged(to):
                 timePasswordChanged = to
-                break
             }
         }
 
@@ -520,10 +512,8 @@ open class Login: CustomStringConvertible, LoginData, LoginUsageData, Equatable 
             switch delta {
             case let .usernameField(to):
                 usernameField = to
-                break
             case let .passwordField(to):
                 passwordField = to
-                break
             }
         }
 

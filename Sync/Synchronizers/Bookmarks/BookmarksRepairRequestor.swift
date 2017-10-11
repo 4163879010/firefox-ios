@@ -371,14 +371,11 @@ class BookmarksRepairRequestor {
 
             case .aborted:
                 break // our caller will take the abort action.
-
             case .finished:
                 break
-
             case .notRepairing:
                 // No repair is in progress. This is a common case, so only log trace.
                 log.verbose("continue repairs called but no repair in progress.")
-                break
             }
             return deferMaybe(state)
         }

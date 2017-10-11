@@ -376,7 +376,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
                 launchFxAFromURL(fxaParams)
                 return true
             }
-            break
         default: ()
         }
         return false
@@ -565,10 +564,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
                 switch action {
                 case .bookmark:
                     addBookmark(notification)
-                    break
                 case .readingList:
                     addToReadingList(notification)
-                    break
                 default:
                     break
                 }

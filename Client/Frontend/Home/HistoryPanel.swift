@@ -131,18 +131,15 @@ class HistoryPanel: SiteTableViewController, HomePanel {
             if self.profile.hasSyncableAccount() {
                 resyncHistory()
             }
-            break
         case NotificationDynamicFontChanged:
             if emptyStateOverlayView.superview != nil {
                 emptyStateOverlayView.removeFromSuperview()
             }
             emptyStateOverlayView = createEmptyStateOverlayView()
             resyncHistory()
-            break
         default:
             // no need to do anything at all
             print("Error: Received unexpected notification \(notification.name)")
-            break
         }
     }
 

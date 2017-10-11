@@ -232,10 +232,8 @@ open class FirefoxAccount {
                 case .notStarted:
                     self.currentImageState = .started
                     self.downloadAvatar()
-                    break
                 case .failedCanRetry:
                     self.downloadAvatar()
-                    break
                 default:
                     break
                 }

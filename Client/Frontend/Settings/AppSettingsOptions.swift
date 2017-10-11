@@ -400,13 +400,10 @@ class AccountStatusSetting: WithAccountSetting {
                 return nil
             case .needsVerification:
                 string = NSLocalizedString("Verify your email address.", comment: "Text message in the settings table view")
-                break
             case .needsPassword:
                 string = NSLocalizedString("Enter your password to connect.", comment: "Text message in the settings table view")
-                break
             case .needsUpgrade:
                 string = NSLocalizedString("Upgrade Firefox to connect.", comment: "Text message in the settings table view")
-                break
             }
 
             let orange = UIColor(red: 255.0 / 255, green: 149.0 / 255, blue: 0.0 / 255, alpha: 1)

@@ -101,11 +101,9 @@ class RemoteTabsPanel: UIViewController, HomePanel {
                 print(notification.name)
                 self.tableViewController.refreshTabs()
             }
-            break
         default:
             // no need to do anything at all
             log.warning("Received unexpected notification \(notification.name)")
-            break
         }
     }
 

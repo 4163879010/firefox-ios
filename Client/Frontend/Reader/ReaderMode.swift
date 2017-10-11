@@ -269,16 +269,14 @@ class ReaderMode: TabHelper {
         if let msg = message.body as? Dictionary<String, String> {
             if let messageType = ReaderModeMessageType(rawValue: msg["Type"] ?? "") {
                 switch messageType {
-                    case .pageEvent:
-                        if let readerPageEvent = ReaderPageEvent(rawValue: msg["Value"] ?? "Invalid") {
-                            handleReaderPageEvent(readerPageEvent)
-                        }
-                        break
-                    case .stateChange:
-                        if let readerModeState = ReaderModeState(rawValue: msg["Value"] ?? "Invalid") {
-                            handleReaderModeStateChange(readerModeState)
-                        }
-                        break
+                case .pageEvent:
+                    if let readerPageEvent = ReaderPageEvent(rawValue: msg["Value"] ?? "Invalid") {
+                        handleReaderPageEvent(readerPageEvent)
+                    }
+                case .stateChange:
+                    if let readerModeState = ReaderModeState(rawValue: msg["Value"] ?? "Invalid") {
+                        handleReaderModeStateChange(readerModeState)
+                    }
                 }
             }
         }

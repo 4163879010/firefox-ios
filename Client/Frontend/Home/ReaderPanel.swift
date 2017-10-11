@@ -239,18 +239,15 @@ class ReadingListPanel: UITableViewController, HomePanel {
         switch notification.name {
         case NotificationFirefoxAccountChanged:
             refreshReadingList()
-            break
         case NotificationDynamicFontChanged:
             if emptyStateOverlayView.superview != nil {
                 emptyStateOverlayView.removeFromSuperview()
             }
             emptyStateOverlayView = createEmptyStateOverview()
             refreshReadingList()
-            break
         default:
             // no need to do anything at all
             log.warning("Received unexpected notification \(notification.name)")
-            break
         }
     }
 

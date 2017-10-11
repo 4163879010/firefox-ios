@@ -118,11 +118,9 @@ class BookmarksPanel: SiteTableViewController, HomePanel {
         switch notification.name {
         case NotificationFirefoxAccountChanged:
             self.reloadData()
-            break
         default:
             // no need to do anything at all
             log.warning("Received unexpected notification \(notification.name)")
-            break
         }
     }
 
@@ -338,8 +336,6 @@ class BookmarksPanel: SiteTableViewController, HomePanel {
         case let item as BookmarkItem:
             homePanelDelegate?.homePanel(self, didSelectURLString: item.url, visitType: VisitType.bookmark)
             LeanplumIntegration.sharedInstance.track(eventName: .openedBookmark)
-            break
-
         case let folder as BookmarkFolder:
             log.debug("Selected \(folder.guid)")
             let nextController = BookmarksPanel()
@@ -356,8 +352,6 @@ class BookmarksPanel: SiteTableViewController, HomePanel {
                 nextController.source = BookmarksModel(modelFactory: specificFactory, root: folder)
                 self.navigationController?.pushViewController(nextController, animated: true)
             }
-            break
-
         default:
             // You can't do anything with separators.
             break
