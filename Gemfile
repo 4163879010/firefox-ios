@@ -1,0 +1,1 @@
+gem 'danger-swiftlint', '~> 0.5.1'
